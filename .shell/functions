@@ -1,0 +1,57 @@
+# search for process
+psgrep() {
+		if [ ! -z $1 ] ; then
+				echo "Grepping for processes matching $1..."
+				ps aux | grep $1 | grep -v grep
+		else
+				echo "!! Need name to grep for"
+		fi
+}
+
+# gather external ip address
+exip () {
+		echo -n "Current External IP: "
+		curl -s -m 5 http://myip.dk | grep "ha4" | sed -e 's/.*ha4">//g' -e 's/<\/span>.*//g'
+}
+
+# determine local IP address
+ips () {
+		ifconfig | grep "inet " | awk '{ print $2 }'
+}
+
+##################
+## Docker stuff ##
+##################
+
+docker-dedangle(){
+	docker rmi -f $(docker images -q --filter "dangling=true")
+}
+	
+docker-refresh(){
+	docker images | grep "quay.io/weightwatchers" | awk '{ print $1 ":" $2 }' | xargs -I {} -P10 docker pull {} | grep Status
+}
+	
+docker-happy-compose(){
+	docker-compose rm -f && docker-compose build && docker-compose up
+}
+
+docker-purge-containers(){
+	# Stop all containers
+	docker stop $(docker ps -a -q)
+	# Delete all containers
+	docker rm $(docker ps -a -q)
+}
+
+docker-purge-images(){
+	docker-purge-containers
+	# Delete all images
+	docker rmi $(docker images -q)
+}
+
+docker-purge-all(){
+	docker-purge-images
+	# Delete all volumes
+	docker volume rm $(docker volume ls -q)
+	# Delete all networks
+	docker network rm $(docker network ls -q)
+}

@@ -1,0 +1,5 @@
+# All cross shell aliases live here
+
+alias ll="ls -lh" 
+alias la="ll -a"
+
