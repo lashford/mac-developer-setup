@@ -1,8 +1,8 @@
 # Mac Setup instructions
 
-Setup Configurations for a new developer mac, this is hugely opinionated and is how i personally have my machine configured, i mostly use this repo as a scratch pad so i can remember how I configure a machine for dev work.  Its is a constantly updated and i will change as i discover new tools or setups.
+So configuring a new Mac is a right pain and a time consuming task at that, having done this several times over the past few months, I thought id write down the important content.  It will be useful for myself but hopefully some else too.
 
-## Base installations
+##  Core Applications
 
 * Google Chrome - [install instructions](https://www.google.co.uk/chrome/browser/features.html)
   * This is an obvious one, Safari just doesn't cut-it,
@@ -20,7 +20,7 @@ Setup Configurations for a new developer mac, this is hugely opinionated and is 
   * The missing Package manager for OS, think `apt-get` or `yum` but for osx.
   * do some updates `brew tap caskroom/versions` & `brew update`
 
-## Homebrew installs
+## Homebrew
 
 Java Latest JDK - installing java via brew is more convenient, the install puts java in the following location:  `/Library/Java/JavaVirtualMachines/jdkXXX.jdk/Contents/Home/bin/java`
 
