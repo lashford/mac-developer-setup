@@ -8,12 +8,6 @@ psgrep() {
 		fi
 }
 
-# gather external ip address
-exip () {
-		echo -n "Current External IP: "
-		curl -s -m 5 http://myip.dk | grep "ha4" | sed -e 's/.*ha4">//g' -e 's/<\/span>.*//g'
-}
-
 # determine local IP address
 ips () {
 		ifconfig | grep "inet " | awk '{ print $2 }'
@@ -26,11 +20,11 @@ ips () {
 docker-dedangle(){
 	docker rmi -f $(docker images -q --filter "dangling=true")
 }
-	
+
 docker-refresh(){
 	docker images | grep "quay.io/weightwatchers" | awk '{ print $1 ":" $2 }' | xargs -I {} -P10 docker pull {} | grep Status
 }
-	
+
 docker-happy-compose(){
 	docker-compose rm -f && docker-compose build && docker-compose up
 }

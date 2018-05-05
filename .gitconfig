@@ -1,0 +1,32 @@
+[color]
+  ui = auto
+  branch = auto
+  diff = auto
+  interactive = auto
+  status = auto
+[core]
+  editor = vi
+[alias]
+  co = checkout
+  s = status
+  b = branch
+  l = log --pretty=format:'%h : %an, %ar : %s' --graph
+  cam = commit -am
+[push]
+  default = current
+[merge]
+  keepBackup = false
+  keepTemporaries = false
+  tool = intellij
+[mergetool "intellij"]
+  keepBackup = false
+  keepTemporaries = false
+  cmd = idea merge $(cd $(dirname "$LOCAL") && pwd)/$(basename "$LOCAL") $(cd $(dirname "$REMOTE") && pwd)/$(basename "$REMOTE") $(cd $(dirname "$BASE") && pwd)/$(basename "$BASE") $(cd $(dirname "$MERGED") && pwd)/$(basename "$MERGED")
+  trustExitCode = false
+[diff]
+  tool = intellij
+[difftool "intellij"]
+  cmd = idea diff $(cd $(dirname "$LOCAL") && pwd)/$(basename "$LOCAL") $(cd $(dirname "$REMOTE") && pwd)/$(basename "$REMOTE")
+[user]
+  name = INSERT-YOUR-NAME
+  email = INSERT-YOUR-EMAIL
